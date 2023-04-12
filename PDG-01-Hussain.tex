@@ -1,0 +1,302 @@
+% This is a template for doing homework assignments in LaTeX
+
+\documentclass[a4paper, 12pt]{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage{amsmath, amssymb}  % This package allows the use of a large range of mathematical formula, commands, and symbols
+
+\usepackage[top=3cm, bottom=2cm, left=2.5cm, right=2cm]{geometry}
+
+\newcommand{\makemyblock}[3]{
+
+    \begin{center}
+        \Large \textbf{#1} \normalsize
+    \end{center}
+
+    \vspace{1cm}
+
+%    \begin{table}[]
+    \begin{flushleft}        
+        \begin{tabular}{|l|l|}
+            \hline
+            \textbf{Name:}       & Pedro Hussain \\
+            \hline
+            \textbf{MatrikelNr:} & 7393841 \\
+            \hline
+            \textbf{Gruppe:}     & {#2} \\
+            \hline
+            \textbf{Blatt:}      & {#3} \\
+            \hline
+        \end{tabular}
+    \end{flushleft}
+    %    \end{table}
+
+    \newcommand*{\QEDA}{\null\nobreak\hfill\ensuremath{\blacksquare}}%
+    \newcommand*{\QEDB}{\null\nobreak\hfill\ensuremath{\square}}%
+
+}
+
+
+
+\begin{document}
+
+    \makemyblock{Übungen zur Einführung in partielle Differentialgleichungen}
+                {3}{01}
+    \vspace{1cm}
+
+    \begin{flushleft}
+
+        \section*{Aufgabe 1a}
+
+        \subsection*{Gegeben:}
+        $u \in C^{\infty}(\mathbb{R}^n\setminus\{0\}) $, $n\ge 2$, mit
+        $$
+        u(x) := \begin{cases}
+                    \|x\|^{2-n} & n\ge 3 \\
+                    \log(\|x\|) & n=2
+                \end{cases}
+        $$
+
+        \subsection*{Behauptung:}
+        $\Delta u(x) = 0$ \, auf \, $\mathbb{R}^n\setminus\{0\}$
+
+        \subsection*{Beweis:}
+        \textbf{Fall 1:} $n = 2$.
+        Für $i \in \{1,2\}$ gilt:
+        $$
+        \partial_i u = \frac{1}{\|x\|} \partial_i \|x\| 
+                     = \frac{1}{\|x\|} \frac{x_i}{\|x\|}
+                     = \frac{x_i}{\|x\|^2}
+        $$
+        Daher
+        $$
+        \partial^2_i u = \frac{\|x\|^2-2x^2_i}{\|x\|^4}
+        $$
+        Summation über $i=1,2$ ergibt
+        $$
+        \Delta u(x) = \frac{2\|x\|^2 - 2\|x\|^2}{\|x\|^4} 
+                    = 0 \quad \surd
+        $$
+        \textbf{Fall 1:} $n \ge 3$.
+        Für $i \in \{1,...n\}$ gilt:    
+        $$
+        \partial_i u = (2-n)\|x\|^{1-n}\frac{x_i}{\|x\|}
+                     = (2-n)\|x\|^{-n}x_i
+        $$
+        Also
+        $$
+        \partial^2_i u = (2-n) \left ((-n)\|x\|^{-n-1}\frac{x^2_i}{\|x\|}+\|x\|^{-n} \right )
+                       = (2-n) \|x\|^{-n} \left ( -\frac{n}{\|x\|^2} x^2_i + 1 \right )
+        $$
+        Summation über $i=1,...n$ liefert
+        $$
+        \Delta u(x) = (2-n) \|x\|^{-n} \left ( -\frac{n}{\|x\|^2} \|x\|^2 + n \right )
+                    = 0  \quad \surd
+        $$
+        \QEDB
+
+
+        \section*{Aufgabe 1b}
+
+        \subsection*{Gegeben:}
+        $u:\mathbb{R}^n \times (0,\infty)\rightarrow \mathbb{R}$ mit
+        $$
+        u(x) := t^{-\frac{n}{2}} e^{-\frac{\|x\|^2}{4t}}
+        $$
+
+        \subsection*{Behauptung:}
+        $\partial_t u - \Delta_x u = 0$ \, auf \, $\mathbb{R}^n \times (0,\infty)$
+
+        \subsection*{Beweis:}
+        Es ist $u \in C^\infty(\mathbb{R}^n\times (0,\infty))$.\\
+        \textbf{Zu $\partial_t u$:} Es gilt
+        $$
+        \partial_t u = \partial_t \left (t^{-\frac{n}{2}} \right ) e^{-\frac{\|x\|^2}{4t}}
+                     + t^{-\frac{n}{2}} \partial_t \left ( e^{-\frac{\|x\|^2}{4t}} \right )
+        $$
+
+        $$
+        \partial_t \left (t^{-\frac{n}{2}} \right ) = -\frac{n}{2} t^{-\frac{n}{2}-1} 
+                                                    = -\frac{n}{2t} t^{-\frac{n}{2}}
+        $$
+
+        $$
+        \partial_t \left (t^{-\frac{n}{2}} \right ) e^{-\frac{\|x\|^2}{4t}} 
+            = -\frac{n}{2t}u
+        $$
+
+        $$
+        \partial_t \left (-\frac{\|x\|^2}{4t} \right ) = \frac{\|x\|^2}{4t^2}
+        $$
+
+        $$
+        \partial_t \left (e^{-\frac{\|x\|^2}{4t}} \right ) 
+            = e^{-\frac{\|x\|^2}{4t}} \frac{\|x\|^2}{4t^2}
+        $$
+
+        $$
+        t^{-\frac{n}{2}} \partial_t \left ( e^{-\frac{\|x\|^2}{4t}} \right )
+                = \frac{\|x\|^2}{4t^2} u
+        $$
+        Zusammengefasst
+        $$
+        \partial_t u = \left ( \frac{\|x\|^2}{4t^2} - \frac{n}{2t} \right ) u
+        $$
+
+        \textbf{Zu $\Delta_x u$:} Sei $i \in \{1,...,n\}$. Dann ist
+        $$
+        \partial_i u = t^{-\frac{n}{2}} \partial_i \left (e^{-\frac{\|x\|^2}{4t}} \right )
+                     = t^{-\frac{n}{2}} e^{-\frac{\|x\|^2}{4t}} \partial_i \left (-\frac{\|x\|^2}{4t} \right )
+                     = - \frac{x_i}{2t} u
+        $$
+        
+        $$
+        \partial^2_i u = - \frac{1}{2t} (u + x_i \partial_i u)
+                       = - \frac{1}{2t} (u - \frac{x^2_i}{2t} u)
+                       = - \frac{1}{2t} (1 - \frac{x^2_i}{2t}) u
+        $$
+        Summation über $i \in \{1,...,n\}$ ergibt
+        $$
+        \Delta_x u = - \frac{1}{2t} \left (n - \frac{\|x\|^2}{2t} \right ) u
+                   = \left (\frac{\|x\|^2}{4t^2}- \frac{n}{2t} \right ) u
+        $$
+        Daher folgt
+        $$
+        \partial_t u - \Delta_x u = 0
+        $$
+        \QEDB
+
+        
+        \section*{Aufgabe 2a}
+
+        \subsection*{Gegeben:}
+        $u \in C^2((a,b) \times (c,d))$ mit: $\partial_1\partial_2u = 0$ auf $(a,b) \times (c,d)
+        $
+
+        \subsection*{Behauptung:}
+        Es existieren $f \in C^2((a,b))$, $g \in C^2((c,d))$ mit $u(x_1,x_2) = f(x_1)+g(x_2)$
+        
+        \subsection*{Beweis:}
+        Seien $\overline{x}_1 \in (a,b)$ und $\overline{x}_2 \in (c,d)$ beliebig aber fest. \\
+        Wegen $\partial_1\partial_2U=0$ muss für jedes $x_2 \in (c,d)$ die Funktion
+        $$
+        \partial_2u(\cdot,x_2): (a,b) \rightarrow \mathbb{R}
+        $$
+        konstant sein, also
+        $$
+        \partial_2u(x_1,x_2) = \partial_2u(\overline{x}_1,x_2) \quad \forall x_1 \in (a,b)
+        $$
+        Definiere $\varphi:(c,d)\rightarrow \mathbb{R}$ durch $\varphi(x_2)=\partial_2u(\overline{x}_1,x_2)$ und sei $\Phi$ eine Stammfunktion von $\varphi$. \\
+        Dann ist $\Phi \in C^2((c,d))$. Für $x_1 \in (a,b), x_2 \in (c,d)$ gilt
+        $$
+        u(x_1,x_2)-u(x_1,\overline{x}_2) 
+            = \int_{\overline{x}_2}^{x_2} \partial_2 u(x_1,\xi_2)d\xi_2
+            = \int_{\overline{x}_2}^{x_2} \varphi(\xi_2)d\xi_2
+            = \Phi(x_2)-\Phi(\overline{x}_2)
+        $$
+        Also
+        $$
+        x(x_1,x_2) = u(x_1,\overline{x}_2) + \Phi(x_2) - \Phi(\overline{x}_2)
+        $$
+        Definiere $f:(a,b)\rightarrow\mathbb{R}$, $f(x_1) := u(x_1,\overline{x}_2)$,
+        und $g:(c,d)\rightarrow\mathbb{R}$, $g(x_2) := \Phi(x_2) - \Phi(\overline{x}_2)$. 
+        Dann ist $f \in C^2((a,b))$, $g \in C^2((c,d))$ und für $x_1 \in (a,b)$, $x_2 \in (c,d)$ gilt
+        $$
+        u(x_1,x_2)=f(x_1)+g(x_2)
+        $$
+
+        \QEDB
+
+
+        \section*{Aufgabe 2b}
+
+        \subsection*{Gegeben:}
+        $u \in C^2(\mathbb{R}^2)$ mit $\partial^2_1u - \partial^2_2u = 0$
+
+        \subsection*{Behauptung:}
+        Es existieren $f, g \in C^2(\mathbb{R})$ mit $u(x_1,x_2) = f(x_1+x_2)+g(x_1-x_2)$
+
+        \subsection*{Beweis:}
+        Definiere $v \in C^2(\mathbb{R}^2)$, 
+                  $v(y_1,y_2) := u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2})$. Dann gilt
+        $$
+        \partial_2 v(y_1,y_2) = \frac{1}{2} \left ( \partial_1 u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2})
+                                - \partial_2 u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2}) \right )
+        $$
+
+        $$
+        \frac{\partial}{\partial_{y_1}} \left (\partial_1 u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2}) \right )
+                = \frac{1}{2} \left ( \partial^2_{11} u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2})
+                + \partial^2_{21} u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2}) \right )
+        $$
+
+        $$
+        \frac{\partial}{\partial_{y_1}} \left (\partial_2 u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2}) \right )
+                = \frac{1}{2} \left ( \partial^2_{12} u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2})
+                + \partial^2_{22} u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2}) \right )
+        $$
+        Es folgt
+        $$
+        \partial_1\partial_2 v(y_1,y_2) = \frac{1}{4} \left ( \partial^2_{11} u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2})
+                                        - \partial^2_{22} u(\frac{y_1+y_2}{2},\frac{y_1-y_2}{2}) \right )
+                                        = 0
+        $$
+        Nach \textbf{Aufgabe 2a} mit $(a,b)=(c,d)= \mathbb{R}$ existieren daher 
+        Funktionen $f, g \in C^2(\mathbb{R})$ mit
+        $$
+        v(y_1,y_2)= f(y_1)+g(y_2)
+        $$
+        Also folgt mit $x_1=\frac{y_1+y_2}{2}, x_2=\frac{y_1-y_2}{2}$
+        $$
+        u(x_1,x_2)=v(x_1+x_2,x_1-x_2)=f(x_1+x_2)+g(x_1-x_2)
+        $$
+
+        \QEDB
+
+        \section*{Aufgabe 3}
+
+        \subsection*{Gegeben:}
+        $U \subset \mathbb{R}^n$ offen, $f \in C^\infty(U)$, $F \in C^\infty(U, \mathbb{R}^3)$.
+
+        \subsection*{Behauptung:}
+        (a) $\text{div} (\text{grad} f) = \Delta f$\\
+        (b) Für $n=3$: $\text{rot} ( \text{grad} \, f) = 0$\\
+        (c) $\text{div}(\text{rot}F) = 0$
+
+        \subsection*{Beweis:}
+        \underline{Zu (a):} Es ist
+        $$
+        \text{div} (\text{grad} f)
+            = \text{div} (\partial_1 f,..., \partial_n f) )
+            = \partial_1(\partial_1)f + ... + \partial_n(\partial_n)f 
+            = \partial^2_1 f + ... + \partial^2_n f = \Delta f  \quad \surd
+        $$
+
+        \underline{Zu (b):} Es ist
+        $$
+        \text{rot} ( \text{grad} \, f) 
+            = \text{rot} \begin{bmatrix}
+                \partial_1 f \\
+                \partial_2 f \\
+                \partial_3 f
+              \end{bmatrix}
+            = \begin{bmatrix}
+                \partial_2 \partial_3 f - \partial_3 \partial_2 f \\
+                - ( \partial_1 \partial_3 f - \partial_3 \partial_1 f ) \\
+                \partial_1 \partial_2 f - \partial_2 \partial_1 f 
+              \end{bmatrix}
+            = \begin{bmatrix}
+                0 \\
+                0 \\
+                0 
+              \end{bmatrix}  \quad \surd
+        $$
+        Lezteres gilt wegen der Vertauschbarkeit der partiellen Ableitungen 
+        (Schwartscher Satz).
+
+
+
+
+
+    \end{flushleft}
+
+\end{document}
