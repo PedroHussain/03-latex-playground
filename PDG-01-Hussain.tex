@@ -331,10 +331,20 @@
 
     \hfill\\
 
-    $n=1$: Es ist
+    \underline{$n=1$:} Es ist also $\alpha, \beta \in \mathbb{N}_0$. Daher gilt die Behauptung nach den eindimensionalen Differationsregeln.
+
+    \hfill\\
+
+    \underline{$n \rightarrow n+1$:} Gelte die Behauptung für ein $n \in \mathbb{N}$. Seien $\alpha, \beta \in \mathbb{N}^{n+1}_0$. Setze $\alpha = (\alpha_1,\underline{\alpha})$ und $\alpha = (\beta_1,\underline{\beta})$
     $$
         \partial^\alpha x^\beta = \partial^{\alpha_1} x^{\beta_1}
+        = \begin{cases}
+            \frac{\alpha_1 !}{(\alpha - \beta)!} x^{\alpha - \beta} & \text{falls } \beta \le \alpha \\
+            0                                                       & \text{sonst}
+        \end{cases}
     $$
+
+
 
 
 \end{flushleft}
